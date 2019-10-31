@@ -6,4 +6,5 @@
     <string name="paper_button">&#128196;</string>
     <string name="scissors_button">&#9986;</string>
     <string name="result">Result</string>
+    <string name="ogre">&#128121;</string>
 </resources>
