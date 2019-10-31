@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">RockPaperS</string>
-    <string name="rock_button">Rock</string>
-    <string name="paper_button">Paper</string>
-    <string name="scissors_button">Scissors</string>
+    <string name="rock_button">&#128142;</string>
+    <string name="emoji">&#128522;</string>
+    <string name="fist">&#128074;</string>
+    <string name="paper_button">&#128196;</string>
+    <string name="scissors_button">&#9986;</string>
     <string name="result">Result</string>
 </resources>

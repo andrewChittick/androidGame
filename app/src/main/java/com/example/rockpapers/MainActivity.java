@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     public void scissors_button(View view){
         //do stuff
         Intent intent = new Intent(this, DisplayResults.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        //EditText editText = (EditText) findViewById(R.id.editText);
+        //String message = editText.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        //startActivity(intent);
     }
 }
