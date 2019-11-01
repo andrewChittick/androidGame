@@ -19,32 +19,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void beginGame(View view){
-      //begin game
-      Intent intent = new Intent(this, DisplayResults.class);
-      String userMove = "hi";
-      String pcMove = "bob";
-      //Game game = new Game(button);
-      //String message = game.result;
+    public void beginGame(View view) {
+        String userMove = "onclick event";
+        Game g = Game.getInstance();
 
-        //intent.putExtra(EXTRA_MESSAGE, userMove);
+        //set all game data
+        g.setUserMove(userMove);
+        //run game somehow
 
-      Bundle extras = new Bundle();
-      extras.putString("userMove", userMove);
-      extras.putString("pcMove", pcMove);
-      intent.putExtras(extras);
+        Intent intent = new Intent(this, DisplayResults.class);
 
-      startActivity(intent);
-    }
 
-    public void ame(){
-        //do stuff
-        //Intent intent = new Intent(this, DisplayResults.class);
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //String message = editText.getText().toString();
-        //String message = "\ud83d\udc3b";
-        //result = message;
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        //startActivity(intent);
+        Bundle extras = new Bundle();
+        extras.putString("userMove", g.getUserMove());
+        extras.putString("pcMove", g.getPcMove());
+        //extras.putString("result", g.getResult());
+        intent.putExtras(extras);
+
+        startActivity(intent);
     }
 }
