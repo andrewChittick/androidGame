@@ -12,7 +12,10 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class MainActivity extends AppCompatActivity {
 
     //EMOJI code constants here
+    public static final String FIST = "fist";
+    public static final String ROCK = "rock";
     public static final String PAPER = "paper";
+    public static final String SCISSORS = "sciccors";
 
 
     @Override
@@ -22,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void beginGame(View view) {
-        String userMove = "onclick event";
+        //onclick get button
+        String userMove = "rocks";
         Game g = Game.getInstance();
 
         //play the game
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         //bundle all the game data
         Bundle extras = new Bundle();
         extras.putString("userMove", g.getUserMove());
+        //for rotation
+        // extras.putStringArrayList("userMove", g.getUserMove());
         extras.putString("pcMove", g.getPcMove());
         extras.putString("result", g.getResult());
         intent.putExtras(extras);

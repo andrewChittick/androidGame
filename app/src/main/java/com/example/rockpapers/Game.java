@@ -1,33 +1,67 @@
 package com.example.rockpapers;
 
+import static com.example.rockpapers.MainActivity.PAPER;
+
 class Game {
+    /*for singleton*/
     private static final Game ourInstance = new Game();
 
     static Game getInstance() {
         return ourInstance;
     }
 
-    //game properties
+    /*game properties TODO(make moves arrays w/rotation)*/
     private String userMove;
     private String pcMove;
     private String result;
 
 
-    //game methods
-    public String getUserMove(){
-        return this.userMove;
+    /*Game private methods*/
+
+    private Game() {
+        errorState();
     }
 
-    public void setUserMove(String move){
+    private void errorState(){
+        //set all game data to a safe, error state
+        setUserMove("test");
+        this.pcMove = "err";
+        this.result = "error";
+    }
+
+    private boolean validateInput(String move){
+        return (move == "rock" || move == "paper" || move == "scissors");
+    }
+
+    private void setUserMove(String move){
         this.userMove = move;
     }
 
+    private void setPcMove(){
+        //set pc move
+        this.pcMove = PAPER;
+    }
+
+    private void setResult(){
+        //set result
+        this.result = "winner";
+    }
+
+    /*public Game methods*/
+
     public void playGame(String move){
-        //validate input
-        setUserMove(move);
-        //setPcMove;
-        //setResults;
-        //else {errorState()};
+        if (validateInput(move)){
+            setUserMove(move);
+            setPcMove();
+            setResult();
+        }
+        else{
+            errorState();
+        }
+    }
+
+    public String getUserMove(){
+        return this.userMove;
     }
 
     public String getPcMove(){
@@ -36,14 +70,5 @@ class Game {
 
     public String getResult(){
         return this.result;
-    }
-
-
-    private Game() {
-        //set defaults
-        //errorState();
-        this.userMove = "move";
-        this.pcMove = "pcMove";
-        this.result = "error";
     }
 }
