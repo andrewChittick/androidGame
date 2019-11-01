@@ -7,13 +7,13 @@ class Game {
         return ourInstance;
     }
 
+    //game properties
     private String userMove;
     private String pcMove;
-
-    //TODO
-    //all game data stored here
+    private String result;
 
 
+    //game methods
     public String getUserMove(){
         return this.userMove;
     }
@@ -22,8 +22,28 @@ class Game {
         this.userMove = move;
     }
 
+    public void playGame(String move){
+        //validate input
+        setUserMove(move);
+        //setPcMove;
+        //setResults;
+        //else {errorState()};
+    }
+
+    public String getPcMove(){
+        return this.pcMove;
+    }
+
+    public String getResult(){
+        return this.result;
+    }
+
 
     private Game() {
-        userMove = "move";
+        //set defaults
+        //errorState();
+        this.userMove = "move";
+        this.pcMove = "pcMove";
+        this.result = "error";
     }
 }

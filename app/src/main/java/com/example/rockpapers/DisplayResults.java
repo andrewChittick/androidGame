@@ -18,6 +18,7 @@ public class DisplayResults extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         String userMove = extras.getString("userMove");
         String pcMove = extras.getString("pcMove");
+        String result = extras.getString("result");
 
         // Capture the layout's TextView and set the string as its text
         TextView textViewLeft = findViewById(R.id.textView3);
@@ -25,5 +26,7 @@ public class DisplayResults extends AppCompatActivity {
 
         TextView textViewRight = findViewById(R.id.textView4);
         textViewRight.setText(pcMove);
+
+        //textview result
     }
 }

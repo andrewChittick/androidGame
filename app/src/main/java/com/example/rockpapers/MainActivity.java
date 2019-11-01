@@ -11,7 +11,9 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    //public static final String EXTRA_MESSAGE = "bob";
+    //EMOJI code constants here
+    public static final String PAPER = "paper";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +25,19 @@ public class MainActivity extends AppCompatActivity {
         String userMove = "onclick event";
         Game g = Game.getInstance();
 
-        //set all game data
-        g.setUserMove(userMove);
-        //run game somehow
+        //play the game
+        g.playGame(userMove);
 
         Intent intent = new Intent(this, DisplayResults.class);
 
-
+        //bundle all the game data
         Bundle extras = new Bundle();
         extras.putString("userMove", g.getUserMove());
         extras.putString("pcMove", g.getPcMove());
-        //extras.putString("result", g.getResult());
+        extras.putString("result", g.getResult());
         intent.putExtras(extras);
 
+        //start game animation
         startActivity(intent);
     }
 }
