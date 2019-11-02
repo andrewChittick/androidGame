@@ -1,7 +1,5 @@
 package com.example.rockpapers;
 
-import static com.example.rockpapers.MainActivity.PAPER;
-
 class Game {
     /*for singleton*/
     private static final Game ourInstance = new Game();
@@ -10,27 +8,17 @@ class Game {
         return ourInstance;
     }
 
-    /*game properties TODO(make moves arrays w/rotation)*/
+    /*game private properties*/
     private String userMove;
     private String pcMove;
     private String result;
 
-
-    /*Game private methods*/
-
+    /*Game methods*/
     private Game() {
-        errorState();
-    }
-
-    private void errorState(){
-        //set all game data to a safe, error state
-        setUserMove("test");
-        this.pcMove = "err";
+        //default error state
+        this.userMove = "CRYFACE";
+        this.pcMove = "CRYFACE";
         this.result = "error";
-    }
-
-    private boolean validateInput(String move){
-        return (move == "rock" || move == "paper" || move == "scissors");
     }
 
     private void setUserMove(String move){
@@ -39,36 +27,65 @@ class Game {
 
     private void setPcMove(){
         //set pc move
-        this.pcMove = PAPER;
+        double randomNum = (Math.random() * 3);
+        if (randomNum < 1) {
+            this.pcMove = "ROCK";
+        }
+        else if (randomNum < 2) {
+            this.pcMove = "PAPER";
+        }
+        else{
+            this.pcMove = "SCISSORS";
+        }
     }
 
     private void setResult(){
         //set result
-        this.result = "winner";
+        if (getUserMove().equals(getPcMove())){
+            this.result = "tie";
+        }
+        else if (getUserMove().equals("ROCK")){
+            if (getPcMove().equals("SCISSORS")){
+                this.result = "Winner!";
+            }
+            else{
+                this.result = "Loser!";
+            }
+        }
+        else if (getUserMove().equals("PAPER")){
+            if (getPcMove().equals("ROCK")){
+                this.result = "Winner!";
+            }
+            else{
+                this.result = "Loser!";
+            }
+        }
+        else{//SCISSORS
+            if (getPcMove().equals("PAPER")){
+                this.result = "Winner!";
+            }
+            else{
+                this.result = "Loser!";
+            }
+        }
     }
 
-    /*public Game methods*/
-
-    public void playGame(String move){
-        if (validateInput(move)){
-            setUserMove(move);
-            setPcMove();
-            setResult();
-        }
-        else{
-            errorState();
-        }
+    void playGame(String move){
+        setUserMove(move);
+        setPcMove();
+        setResult();
     }
 
-    public String getUserMove(){
+    String getUserMove(){
         return this.userMove;
     }
 
-    public String getPcMove(){
+    String getPcMove(){
         return this.pcMove;
     }
 
-    public String getResult(){
+    String getResult(){
         return this.result;
     }
+
 }

@@ -8,6 +8,13 @@ import android.widget.TextView;
 
 public class DisplayResults extends AppCompatActivity {
 
+    //EMOJI unicode constants here
+    private final String FIST = "fist";
+    private final String ROCK = "rock";
+    private final String PAPER = "paper";
+    private final String SCISSORS = "sciccors";
+    private final String CRYFACE = "cryface";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,7 @@ public class DisplayResults extends AppCompatActivity {
         TextView textViewRight = findViewById(R.id.textView4);
         textViewRight.setText(pcMove);
 
-        //textview result
+        TextView textViewResult = findViewById(R.id.textView5);
+        textViewResult.setText(result);
     }
 }

@@ -5,18 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
-
-    //EMOJI code constants here
-    public static final String FIST = "fist";
-    public static final String ROCK = "rock";
-    public static final String PAPER = "paper";
-    public static final String SCISSORS = "sciccors";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +15,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void beginGame(View view) {
-        //onclick get button
-        String userMove = "rocks";
+        //start the game
         Game g = Game.getInstance();
 
-        //play the game
-        g.playGame(userMove);
+        //onclick get button pressed (move)
+        int buttonPressed = view.getId();
+
+        //play the game with appropriate user move
+        if (buttonPressed == R.id.rock){
+            g.playGame("ROCK");
+        }
+        else if (buttonPressed == R.id.paper){
+            g.playGame("PAPER");
+        }
+        else if (buttonPressed == R.id.scissors){
+            g.playGame(("SCISSORS"));
+        }
 
         Intent intent = new Intent(this, DisplayResults.class);
 
         //bundle all the game data
         Bundle extras = new Bundle();
         extras.putString("userMove", g.getUserMove());
-        //for rotation
-        // extras.putStringArrayList("userMove", g.getUserMove());
         extras.putString("pcMove", g.getPcMove());
         extras.putString("result", g.getResult());
         intent.putExtras(extras);
