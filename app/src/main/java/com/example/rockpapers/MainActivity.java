@@ -17,31 +17,25 @@ public class MainActivity extends AppCompatActivity {
     public void beginGame(View view) {
         //start the game
         Game g = Game.getInstance();
-
-        //onclick get button pressed (move)
-        int buttonPressed = view.getId();
-
-        //play the game with appropriate user move
-        if (buttonPressed == R.id.rock){
-            g.playGame("ROCK");
-        }
-        else if (buttonPressed == R.id.paper){
-            g.playGame("PAPER");
-        }
-        else if (buttonPressed == R.id.scissors){
-            g.playGame(("SCISSORS"));
-        }
+        g.playGame(getInput(view.getId()));
 
         Intent intent = new Intent(this, DisplayResults.class);
-
-        //bundle all the game data
-        Bundle extras = new Bundle();
-        extras.putString("userMove", g.getUserMove());
-        extras.putString("pcMove", g.getPcMove());
-        extras.putString("result", g.getResult());
-        intent.putExtras(extras);
+        intent.putExtras(g.getResults());
 
         //start game animation
         startActivity(intent);
+    }
+
+    private String getInput(int buttonPressed){
+        //return with appropriate user move
+        if (buttonPressed == R.id.rock){
+            return ("rock");
+        }
+        else if (buttonPressed == R.id.paper){
+            return ("paper");
+        }
+        else{
+            return ("scissors");
+        }
     }
 }

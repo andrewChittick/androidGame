@@ -1,5 +1,7 @@
 package com.example.rockpapers;
 
+import android.os.Bundle;
+
 class Game {
     /*for singleton*/
     private static final Game ourInstance = new Game();
@@ -8,84 +10,52 @@ class Game {
         return ourInstance;
     }
 
-    /*game private properties*/
-    private String userMove;
-    private String pcMove;
-    private String result;
+    private Bundle results;
 
     /*Game methods*/
     private Game() {
-        //default error state
-        this.userMove = "CRYFACE";
-        this.pcMove = "CRYFACE";
-        this.result = "error";
+        results = new Bundle();
     }
 
-    private void setUserMove(String move){
-        this.userMove = move;
-    }
-
-    private void setPcMove(){
-        //set pc move
+    private String setPcMove(){
+        //random number 0-3
         double randomNum = (Math.random() * 3);
         if (randomNum < 1) {
-            this.pcMove = "ROCK";
+            return("rock");
         }
         else if (randomNum < 2) {
-            this.pcMove = "PAPER";
+            return("paper");
         }
         else{
-            this.pcMove = "SCISSORS";
+            return("scissors");
         }
     }
 
-    private void setResult(){
-        //set result
-        if (getUserMove().equals(getPcMove())){
-            this.result = "tie";
-        }
-        else if (getUserMove().equals("ROCK")){
-            if (getPcMove().equals("SCISSORS")){
-                this.result = "Winner!";
-            }
-            else{
-                this.result = "Loser!";
-            }
-        }
-        else if (getUserMove().equals("PAPER")){
-            if (getPcMove().equals("ROCK")){
-                this.result = "Winner!";
-            }
-            else{
-                this.result = "Loser!";
-            }
-        }
-        else{//SCISSORS
-            if (getPcMove().equals("PAPER")){
-                this.result = "Winner!";
-            }
-            else{
-                this.result = "Loser!";
-            }
-        }
+    private String setJudgement(Move user, Move pc){
+        if (user.getGesture().equals(pc.getGesture())){return("tie");}
+        else if (user.getBeats().equals(pc.getGesture())){return("Winner!");}
+        else {return("Loser!");}
     }
 
-    void playGame(String move){
-        setUserMove(move);
-        setPcMove();
-        setResult();
+    private void setResults(Move user, Move pc, String judgement) {
+        //extract/Bundle info
+        this.results.putString("userEmoji", user.getEmoji());
+        this.results.putFloat("userRotation", user.getRotation());
+
+        this.results.putString("pcEmoji", pc.getEmoji());
+        this.results.putFloat("pcRotation", pc.getRotation());
+
+        this.results.putString("judgement", judgement);
     }
 
-    String getUserMove(){
-        return this.userMove;
+    void playGame(String move) {
+        Move user = new Move(move);
+        Move pc = new Move(setPcMove());
+        setResults(user, pc, setJudgement(user, pc));
     }
 
-    String getPcMove(){
-        return this.pcMove;
-    }
-
-    String getResult(){
-        return this.result;
+    Bundle getResults(){
+        return this.results;
     }
 
 }

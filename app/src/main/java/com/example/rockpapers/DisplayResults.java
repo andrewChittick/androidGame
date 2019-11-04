@@ -8,33 +8,33 @@ import android.widget.TextView;
 
 public class DisplayResults extends AppCompatActivity {
 
-    //EMOJI unicode constants here
-    private final String FIST = "fist";
-    private final String ROCK = "rock";
-    private final String PAPER = "paper";
-    private final String SCISSORS = "sciccors";
-    private final String CRYFACE = "cryface";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_results);
 
-        // Get the Intent that started this activity and extract the string
+        // Get the Intent that started this activity and extract the strings
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        String userMove = extras.getString("userMove");
-        String pcMove = extras.getString("pcMove");
-        String result = extras.getString("result");
+        Bundle results = intent.getExtras();
 
-        // Capture the layout's TextView and set the string as its text
-        TextView textViewLeft = findViewById(R.id.textView3);
-        textViewLeft.setText(userMove);
+        displayResults(results);
+    }
 
-        TextView textViewRight = findViewById(R.id.textView4);
-        textViewRight.setText(pcMove);
+    private void displayResults(Bundle results) {
+        TextView textView;
+        //user move
+        textView = findViewById(R.id.userView);
+        setMove(textView, results.getString("userEmoji"), results.getFloat("userRotation"));
+        //pc move
+        textView = findViewById(R.id.pcView);
+        setMove(textView, results.getString("pcEmoji"), results.getFloat("pcRotation"));
+        //judgement day
+        textView = findViewById(R.id.judgementView);
+        textView.setText(results.getString("judgement"));
+    }
 
-        TextView textViewResult = findViewById(R.id.textView5);
-        textViewResult.setText(result);
+    private void setMove(TextView move, String emoji, float rotation) {
+        move.setText(emoji);
+        move.setRotation(rotation);
     }
 }
