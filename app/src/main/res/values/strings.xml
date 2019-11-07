@@ -2,8 +2,8 @@
     <string name="app_name">RockPaperS</string>
     <string name="rock_button">&#128511;</string>
     <string name="emoji">\ud83d\udc3b</string>
-    <string name="fist">👊&#128511;👊👊</string>
+    <string name="fist">\uD83D\uDC4A</string>
     <string name="paper_button">&#128196;</string>
     <string name="scissors_button">&#9986;</string>
-    <string name="result">Result</string>
+    <string name="result"></string>
 </resources>
